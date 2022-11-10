@@ -8,7 +8,7 @@ With pipeline_symbols, you can pipeline ruby symbols as if they are callable (pr
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pipeline_symbols'
+gem "pipeline_symbols"
 ```
 
 And then execute:

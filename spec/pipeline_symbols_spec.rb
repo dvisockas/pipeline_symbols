@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe PipelineSymbols do
+  let(:mirror) do
+    Class.new.tap { |klass| klass.define_singleton_method("mirror", &:itself) }
+  end
+
   it "has a version number" do
     expect(PipelineSymbols::VERSION).not_to be nil
   end
@@ -18,12 +22,6 @@ RSpec.describe PipelineSymbols do
   end
 
   it "pipelines with method and symbol mix" do
-    class Mirror
-      def self.mirror(something)
-        something
-      end
-    end
-
-    expect([1].map(&Mirror.method(:mirror) << :to_s)).to eq(["1"])
+    expect([1].map(&mirror.method(:mirror) << :to_s)).to eq(["1"])
   end
 end
